@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 
-export default function Modal({ children, open, cssClass = '' }) {
+export default function Modal({ children, open, cssClass = '', onClose }) {
   const dialog = useRef();
 
   useEffect(() => {
@@ -13,7 +13,7 @@ export default function Modal({ children, open, cssClass = '' }) {
   }, [open]);
 
   return createPortal(
-    <dialog ref={dialog} className={`modal ${cssClass}`}>
+    <dialog ref={dialog} className={`modal ${cssClass}`} onClose={onClose}>
       {children}
     </dialog>,
     document.getElementById('modal')
